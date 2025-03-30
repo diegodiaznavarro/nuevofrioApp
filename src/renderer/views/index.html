@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta tags importantes de seguridad -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi App - Inicio de Sesión</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Bienvenido</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required autocomplete="username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
+            </div>
+            
+            <button type="submit" id="loginBtn">Iniciar Sesión</button>
+        </form>
+        
+        <!-- Área de mensajes de estado -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <!-- Cargamos el script del renderer de forma segura -->
+    <script src="../js/index.js"></script>
+</body>
+</html>
