@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Nuevo Frio</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Barra superior -->
+        <header class="top-bar">
+            <div class="brand">
+                <h1><i class="fas fa-snowflake"></i> Nuevo Frio</h1>
+            </div>
+            <div class="user-info">
+                <div class="datetime">
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </button>
+            </div>
+        </header>
+
+        <!-- Panel lateral -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="avatar">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <div class="user-details">
+                    <span class="username" id="admin-username">Admin Sistema</span>
+                    <span class="role">Administrador</span>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <button class="menu-btn active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="menu-btn" data-section="usuarios">
+                            <i class="fas fa-users"></i>
+                            <span>Usuarios</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="menu-btn" data-section="productos">
+                            <i class="fas fa-boxes"></i>
+                            <span>Productos</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="menu-btn" data-section="ventas">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Ventas</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="menu-btn" data-section="reportes">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reportes</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="menu-btn" data-section="configuracion">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="content-area">
+            <section class="content-section active" id="dashboard-section">
+                <h2><i class="fas fa-tachometer-alt"></i> Resumen del Sistema</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-primary">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Usuarios</h3>
+                            <p class="stat-value" id="user-count">12</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-secondary">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Productos</h3>
+                            <p class="stat-value" id="product-count">45</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-accent">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Ventas Hoy</h3>
+                            <p class="stat-value" id="sales-today">8</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-dark">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Ingresos</h3>
+                            <p class="stat-value" id="revenue">$12,450</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3><i class="fas fa-history"></i> Actividad Reciente</h3>
+                    <ul class="activity-list" id="recent-activity">
+                        <!-- Se llenará dinámicamente con JavaScript -->
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" id="usuarios-section">
+                <h2><i class="fas fa-users"></i> Gestión de Usuarios</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" id="add-user-btn">
+                        <i class="fas fa-plus"></i> Nuevo Usuario
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar usuarios..." id="user-search">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table" id="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Perfil</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se llenará dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="content-section" id="productos-section">
+                <h2><i class="fas fa-boxes"></i> Gestión de Productos</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" id="add-product-btn">
+                        <i class="fas fa-plus"></i> Nuevo Producto
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar productos..." id="product-search">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table" id="products-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Marca</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se llenará dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Otras secciones (ventas, reportes, configuración) -->
+            <section class="content-section" id="ventas-section">
+                <h2><i class="fas fa-chart-line"></i> Gestión de Ventas</h2>
+                <p>Contenido de ventas...</p>
+            </section>
+
+            <section class="content-section" id="reportes-section">
+                <h2><i class="fas fa-file-alt"></i> Reportes</h2>
+                <p>Contenido de reportes...</p>
+            </section>
+
+            <section class="content-section" id="configuracion-section">
+                <h2><i class="fas fa-cog"></i> Configuración</h2>
+                <p>Contenido de configuración...</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para agregar/editar usuarios -->
+    <div class="modal" id="user-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-user-title">Nuevo Usuario</h3>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="user-name">Nombre</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-lastname">Apellido</label>
+                    <input type="text" id="user-lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-dni">DNI</label>
+                    <input type="text" id="user-dni" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-profile">Perfil</label>
+                    <select id="user-profile" required>
+                        <option value="admin">Administrador</option>
+                        <option value="vendedor">Vendedor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Contraseña</label>
+                    <input type="password" id="user-password">
+                    <small>Dejar en blanco para no cambiar</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar productos -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-product-title">Nuevo Producto</h3>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label for="product-code">Código</label>
+                    <input type="text" id="product-code" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-sector">Sector</label>
+                    <select id="product-sector" required>
+                        <option value="Ferretería">Ferretería</option>
+                        <option value="Refrigeración">Refrigeración</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-brand">Marca</label>
+                    <input type="text" id="product-brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descripción</label>
+                    <textarea id="product-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-stock">Stock</label>
+                    <input type="number" id="product-stock" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-netprice">Precio Neto</label>
+                        <input type="number" step="0.01" id="product-netprice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-listprice">Precio Lista</label>
+                        <input type="number" step="0.01" id="product-listprice" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

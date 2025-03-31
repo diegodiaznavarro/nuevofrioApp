@@ -19,13 +19,14 @@ const authController = {
             }
 
             // Retornar información del usuario (sin la contraseña)
-            return {
-                id: user.id,
-                nombre: user.nombre,
-                apellido: user.apellido,
-                dni: user.dni,
-                perfil: user.perfil
-            };
+            return user;
+            // return {
+            //     id: user.id,
+            //     nombre: user.nombre,
+            //     apellido: user.apellido,
+            //     dni: user.dni,
+            //     perfil: user.perfil
+            // };
         } catch (error) {
             console.error('Error en autenticación:', error);
             throw error;
