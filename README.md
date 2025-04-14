@@ -1,3 +1,4 @@
+
 # nuevofrioApp - Estructura del proyecto
 mi-app-electron/
 ├── src/
