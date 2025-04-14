@@ -1,5 +1,5 @@
 
-* ** nuevofrioApp - Estructura del proyecto **
+*  Nuevo Frio App - Estructura del proyecto:
 
 ```mi-app-electron/
 ├── src/
